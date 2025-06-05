@@ -104,7 +104,7 @@ class DataTransformation:
             logging.info('Renaming spcific columns and casting to int')
             df = df.rename(columns = {
                 'Vehicle_Age_< 1 Year': 'Vehicle_Age_It_1_Year',
-                'Vehicle_Age_> 2 Year': 'Vehicle_Age_gt_2_Years'
+                'Vehicle_Age_> 2 Years': 'Vehicle_Age_gt_2_Years'
             })
             for col in ['Vehicle_Age_It_1_Year','Vehicle_Age_gt_2_Years','Vehicle_Damage_Yes']:
                 if col in df.columns:
