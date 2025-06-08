@@ -40,6 +40,4 @@ jobs:
           docker rm vehicleproj || true
 
       - name: Run Docker container
-        run: |
-          docker run -d -e MONGODB_URL="${{ secrets.MONGODB_URL }}" -p 5050:5000 "${{ secrets.ACR_LOGIN_SERVER }}/vehicleproj:latest"
-
+        run: docker run -d -e MONGODB_URL="${{ secrets.MONGODB_URL }}" -p 5050:5000 "${{ secrets.ACR_LOGIN_SERVER }}/vehicleproj:latest"
