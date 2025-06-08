@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://your-image-host.com/vehicle-insurance-mlops-banner.png" alt="Vehicle Insurance MLOps Banner" width="100%">
+  <img src="https://github.com/CodeWithTaskin/Vehicle-Insurance-System/blob/main/assets/image.png" alt="Vehicle Insurance MLOps Banner" width="100%">
 </p>
 
 # 🚗 Vehicle Insurance ML Project — End-to-End MLOps on Azure
