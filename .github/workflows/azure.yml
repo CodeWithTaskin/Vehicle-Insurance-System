@@ -37,12 +37,17 @@ jobs:
       - name: Pull Docker image from ACR
         run: docker pull "${{ secrets.ACR_LOGIN_SERVER }}/vehicleproj:latest"
 
-      - name: Stop existing container if running
+      - name: Stop and remove existing container (if any)
         run: |
-          docker stop vehicleproj || true
-          docker rm vehicleproj || true
+          CONTAINER_ID=$(docker ps -q --filter "ancestor=${{ secrets.ACR_LOGIN_SERVER }}/vehicleproj:latest")
+          if [ -n "$CONTAINER_ID" ]; then
+            docker stop "$CONTAINER_ID"
+            docker rm "$CONTAINER_ID"
+          else
+            echo "No existing container found for image."
+          fi
 
 
       - name: Run Docker container
-        run: docker run -d -p 5000:5000 "${{ secrets.ACR_LOGIN_SERVER }}/vehicleproj:latest"
+        run: docker run -d --env AZURE_STORAGE_CONNECTION_STRING=${{ secrets.AZURE_STORAGE_CONNECTION_STRING }} -p 5000:5000 "${{ secrets.ACR_LOGIN_SERVER }}/vehicleproj:latest"
 
