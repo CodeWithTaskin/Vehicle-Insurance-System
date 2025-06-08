@@ -32,7 +32,7 @@ jobs:
           echo "${{ secrets.ACR_PASSWORD }}" | docker login ${{ secrets.ACR_LOGIN_SERVER }} -u ${{ secrets.ACR_USERNAME }} --password-stdin
 
       - name: Pull Docker image from ACR
-        run: docker pull ${{ secrets.ACR_LOGIN_SERVER }}/vehicleproj:latest
+        run: docker pull "${{ secrets.ACR_LOGIN_SERVER }}/vehicleproj:latest"
 
       - name: Stop existing container if running
         run: |
@@ -41,4 +41,5 @@ jobs:
 
       - name: Run Docker container
         run: |
-          docker run -d --name vehicleproj -e MONGODB_URL="${{ secrets.MONGODB_URL }}" -p 5000:5000 ${{ secrets.ACR_LOGIN_SERVER }}/vehicleproj:latest 
+          docker run -d --name vehicleproj -e MONGODB_URL="${{ secrets.MONGODB_URL }}" -p 5000:5000 "${{ secrets.ACR_LOGIN_SERVER }}/vehicleproj:latest"
+
