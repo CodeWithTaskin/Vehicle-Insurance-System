@@ -26,6 +26,9 @@ jobs:
   deploy:
     needs: build-and-push
     runs-on: self-hosted
+    env:
+      AZURE_STORAGE_CONNECTION_STRING: ${{ secrets.AZURE_STORAGE_CONNECTION_STRING }}
+      
     steps:
       - name: Login to Azure Container Registry on VM
         run: |
@@ -38,6 +41,7 @@ jobs:
         run: |
           docker stop vehicleproj || true
           docker rm vehicleproj || true
+
 
       - name: Run Docker container
         run: docker run -d -p 5000:5000 "${{ secrets.ACR_LOGIN_SERVER }}/vehicleproj:latest"
