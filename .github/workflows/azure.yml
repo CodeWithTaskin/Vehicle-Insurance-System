@@ -32,9 +32,6 @@ jobs:
     steps:
       - name: Pull and run Docker image on Azure VM
         run: |
-          az acr login --name ${{ secrets.ACR_NAME }}  # required for private ACR
-
-          docker pull ${{ secrets.ACR_LOGIN_SERVER }}/vehicleproj:latest
           docker run -d \
             -e MONGODB_URL="${{ secrets.MONGODB_URL }}" \
             -p 5000:5000 \
