@@ -31,7 +31,5 @@ jobs:
     runs-on: self-hosted
     steps:
       - name: Run Docker container
-        run: |
-          docker run -d -e MONGODB_URL="${{ secrets.MONGODB_URL }}" \
-            -p 5000:5000 \
-            ${{ secrets.ACR_LOGIN_SERVER }}/vehicleproj:latest
+        run: docker run -d -e MONGODB_URL="${{ secrets.MONGODB_URL }}" -p 5000:5000 ${{ secrets.ACR_LOGIN_SERVER }}/vehicleproj:latest
+      
