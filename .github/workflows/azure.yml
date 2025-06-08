@@ -32,5 +32,7 @@ jobs:
     steps:
       - name: Pull and run Docker image on Azure VM
         run: |
-          docker run -d -e MONGODB_URL="${{ secrets.MONGODB_URL }}" -p 5000:5000 ACR_LOGIN_SERVER="${{ secrets.ACR_LOGIN_SERVER }}"/vehicleproj:latest
-
+          docker run -d \
+          -e MONGODB_URL="${{ secrets.MONGODB_URL }}" \
+          -p 5000:5000 \
+          ${{ secrets.ACR_LOGIN_SERVER }}/vehicleproj:latest
